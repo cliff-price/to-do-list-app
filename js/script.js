@@ -29,14 +29,6 @@ function newItem(){
           $('#list').append(li);
         }
     
-        function crossOut() {
-          li.toggleClass("strike");
-      }
-  
-      li.on("dblclick", function crossOut() {
-          li.toggleClass("strike");
-      });
-
      /*2. Crossing out an item from the list of items:
 
      Vanilla Code:
@@ -48,24 +40,37 @@ function newItem(){
          
         Replaced vanilla code with jQuery code*/
 
-        function crossOut() {
-          li.addClass("strike");
-      }
-  
-      li.on("dblclick", function crossOut() {
-          li.addClass("strike");
-      });
+      li.on("dblclick", function crossOut() {li.toggleClass("strike")
+    });
+
     
-    /* //3(i). Adding the delete button "X": 
+    /* //3(i). Adding the delete button "X":
+    
+    Vanilla Code:
        let crossOutButton = document.createElement("crossOutButton");
          crossOutButton.appendChild(document.createTextNode("X"));
          li.appendChild(crossOutButton);
     
          crossOutButton.addEventListener("click", deleteListItem);
+
+
      //3(ii). Adding CLASS DELETE (DISPLAY: NONE) from the css:
-       function deleteListItem(){
+
+     Vanilla Code:
+        function deleteListItem(){
              li.classList.add("delete")
-         }*/
+         }
+
+         Replaced vanilla code with jQuery code*/ 
+         
+         let crossOutButton = $('<crossOutButton></crossOutButton>');
+         crossOutButton.append(document.createTextNode('delete'));
+         li.append(" ",crossOutButton);
+         crossOutButton.on("click", function deleteListItem(){
+          li.addClass("delete")
+         });
+
+
      // 4. Reordering the items: 
        $('#list').sortable();
     
